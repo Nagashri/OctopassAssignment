@@ -1,0 +1,7 @@
+%aside.main-sidebar
+	%section.sidebar
+		= render_navigation :renderer => Sidebar, context: :sidebar, :expand_all => true
+:javascript
+	$("#dashboard_context").change(function () {
+		$.post("/dashboard_context.js", {dashboard_context: this.value});
+	});

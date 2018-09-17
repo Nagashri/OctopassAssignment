@@ -1,0 +1,26 @@
+!!!
+%html
+	%head
+		%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+		%meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+		%title Ocotopass Assignment
+		= csrf_meta_tags
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+	%body.layout-top-nav.skin-green-light
+		.wrapper
+			=render 'layouts/components/header'
+			.content-wrapper
+				/ Content Header (Page header)
+				-if content_for :page_header
+					%section.content-header
+						%h1=yield(:page_header)
+				/ Main content
+				%section.content
+					- flash.each do |name, msg|
+						- if msg.is_a?(String)
+							#flash
+								.alert.alert-dismissible{class: "alert-#{name}"}
+									%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+									=msg
+					=yield

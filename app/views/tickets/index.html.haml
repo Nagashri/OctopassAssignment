@@ -1,0 +1,29 @@
+%h1 Tickets
+%table.table.table-bordered
+	%thead
+		%tr
+			%th
+				RequestNumber
+			%th
+				SequenceNumber
+			%th
+				RequestType
+			%th
+				ResponseDueDateTime
+			%th
+				PrimaryServiceAreaCode
+			%th
+				AdditionalServiceAreaCodes
+			%th
+	%tbody
+		- @tickets.each do |ticket|
+
+			%tr
+				%td= ticket.request_number
+				%td= ticket.sequence_number
+				%td= ticket.request_type
+				%td= ticket.response_due_date_time
+				%td= ticket.primary_service_area_code
+				%td= ticket.additional_service_area_codes
+				%td= link_to 'Show', ticket,:class => "btn btn-default"
+%br/

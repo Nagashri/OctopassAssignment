@@ -10,6 +10,44 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap.min
+ *= require AdminLTE.min
+ *= require skin-green-light.min
  *= require_tree .
  *= require_self
  */
+
+ body{
+  	margin: 0px;
+ }
+ table thead th.sorting:after
+ { 
+ 	content: "\f0dc";
+ 	color: #ddd;
+ 	font-size: 0.8em;
+ 	padding-top: 0.12em;
+ }
+
+ table thead th.sorting_asc:after 
+ { 
+ 	content: "\f0de"; 
+ }
+ table thead th.sorting_desc:after 
+ { 
+ 	content: "\f0dd"; 
+ }
+ table thead .sorting:after, table thead .sorting_asc:after, table thead .sorting_desc:after 
+ { 
+ 	opacity: 0 !important; 
+ }
+ table thead th 
+ { 
+  	text-align: center;
+ }
+ a:hover {
+     color: #454545;
+     background-color: transparent; 
+ }
+ .content{
+ 	min-height: -webkit-fill-available;
+ }

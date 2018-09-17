@@ -1,0 +1,76 @@
+:css
+	#mapDiv {
+		width: 1200px;
+		height: 800px;
+%h1 Ticket Information
+%table.table.table-bordered
+	%thead
+		%tr
+			%td
+				%b
+					RequestNumber
+			%td= @ticket.request_number
+		%tr
+			%td
+				%b
+					SequenceNumber
+			%td= @ticket.sequence_number
+		%tr
+			%td
+				%b
+					RequestType
+			%td= @ticket.request_type
+		%tr
+			%td
+				%b
+					ResponseDueDateTime
+			%td= @ticket.response_due_date_time
+		%tr
+			%td
+				%b
+					PrimaryServiceAreaCode
+			%td= @ticket.primary_service_area_code
+		%tr
+			%td
+				%b
+					AdditionalServiceAreaCodes
+			%td= @ticket.additional_service_area_codes
+		%tr
+			%td
+				%b
+					WellKnownText
+			%td= @ticket.digsite_info
+		-if @ticket.excavator.present?
+			%tr
+				%td
+					%b
+						Excavator Company Name
+				%td= @ticket.excavator.company_name
+			%tr
+				%td
+					%b
+						Excavator Address
+				%td= @ticket.excavator.address
+			%tr
+				%td
+					%b
+						Excavator Crew On Site
+				%td= @ticket.excavator.crew_on_site
+#mapDiv
+
+:javascript
+	var map;
+	var data = "#{@ticket.id}"
+	console.log
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('mapDiv'), {
+			zoom: 5,
+			center: new google.maps.LatLng(40.755604,-73.984932), //centering on India
+			mapTypeId: 'terrain'
+		});
+		map.data.loadGeoJson("/polygon_"+data+".json");
+	}
+%script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyBEmohJnfJCD7oM-UJqWFAvlKFPGwhMNs8&callback=initMap"}
+
+%br/
+= link_to 'Back', tickets_path,:class => "btn btn-default"
